@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Patient Appointment System{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-3">Welcome to HealthCare Clinic</h1>
+        <p class="lead mb-4">Your health is our priority. Book an appointment with our expert doctors today!</p>
+        <a href="/book" class="btn btn-light btn-lg px-5 py-3">
+            <i class="fas fa-calendar-check"></i> Book Appointment Now
+        </a>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Departments</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-heartbeat fa-3x text-danger mb-3"></i>
+                        <h5 class="card-title">Cardiology</h5>
+                        <p class="card-text">Expert care for heart-related conditions with state-of-the-art equipment.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-bone fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Orthopedics</h5>
+                        <p class="card-text">Specialized treatment for bone, joint, and muscle disorders.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-user-md fa-3x text-success mb-3"></i>
+                        <h5 class="card-title">Dermatology</h5>
+                        <p class="card-text">Comprehensive skin care and treatment by experienced dermatologists.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-brain fa-3x text-warning mb-3"></i>
+                        <h5 class="card-title">Neurology</h5>
+                        <p class="card-text">Advanced neurological care for brain and nervous system disorders.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-baby fa-3x text-info mb-3"></i>
+                        <h5 class="card-title">Pediatrics</h5>
+                        <p class="card-text">Compassionate care for infants, children, and adolescents.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-eye fa-3x text-secondary mb-3"></i>
+                        <h5 class="card-title">Ophthalmology</h5>
+                        <p class="card-text">Complete eye care services including surgery and vision correction.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Why Choose Us?</h2>
+        <div class="row">
+            <div class="col-md-3 text-center mb-4">
+                <i class="fas fa-user-doctor fa-3x text-primary mb-3"></i>
+                <h5>Expert Doctors</h5>
+                <p>Highly qualified and experienced medical professionals</p>
+            </div>
+            <div class="col-md-3 text-center mb-4">
+                <i class="fas fa-clock fa-3x text-primary mb-3"></i>
+                <h5>24/7 Service</h5>
+                <p>Round-the-clock emergency and consultation services</p>
+            </div>
+            <div class="col-md-3 text-center mb-4">
+                <i class="fas fa-hospital fa-3x text-primary mb-3"></i>
+                <h5>Modern Facilities</h5>
+                <p>State-of-the-art medical equipment and infrastructure</p>
+            </div>
+            <div class="col-md-3 text-center mb-4">
+                <i class="fas fa-hand-holding-medical fa-3x text-primary mb-3"></i>
+                <h5>Affordable Care</h5>
+                <p>Quality healthcare at reasonable and transparent pricing</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section text-white text-center py-5">
+    <div class="container">
+        <h2 class="mb-4">Ready to Book Your Appointment?</h2>
+        <p class="lead mb-4">Take the first step towards better health today!</p>
+        <a href="/book" class="btn btn-light btn-lg px-5">
+            <i class="fas fa-calendar-plus"></i> Schedule Now
+        </a>
+    </div>
+</section>
+{% endblock %}
