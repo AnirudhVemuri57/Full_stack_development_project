@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Patient Appointment System{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container-fluid">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="text-center mb-4">
+                    <i class="fas fa-user-shield"></i> Doctor Dashboard - Appointment Management
+                </h2>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card bg-warning text-white shadow">
+                    <div class="card-body text-center">
+                        <h3>{{ appointments|selectattr('status', 'equalto', 'Pending')|list|length }}</h3>
+                        <p class="mb-0"><i class="fas fa-clock"></i> Pending Appointments</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-success text-white shadow">
+                    <div class="card-body text-center">
+                        <h3>{{ appointments|selectattr('status', 'equalto', 'Approved')|list|length }}</h3>
+                        <p class="mb-0"><i class="fas fa-check-circle"></i> Approved Appointments</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-danger text-white shadow">
+                    <div class="card-body text-center">
+                        <h3>{{ appointments|selectattr('status', 'equalto', 'Rejected')|list|length }}</h3>
+                        <p class="mb-0"><i class="fas fa-times-circle"></i> Rejected Appointments</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointments Table -->
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="fas fa-list"></i> All Appointment Requests</h4>
+            </div>
+            <div class="card-body">
+                {% if appointments %}
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped" id="appointmentsTable">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Patient Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Department</th>
+                                <th>Doctor</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for appointment in appointments %}
+                            <tr id="row-{{ appointment.id }}">
+                                <td>#{{ appointment.id }}</td>
+                                <td>{{ appointment.name }}</td>
+                                <td>{{ appointment.email }}</td>
+                                <td>{{ appointment.phone }}</td>
+                                <td>{{ appointment.department }}</td>
+                                <td>{{ appointment.doctor }}</td>
+                                <td>{{ appointment.date }}</td>
+                                <td>{{ appointment.time }}</td>
+                                <td>
+                                    <span class="badge 
+                                        {% if appointment.status == 'Pending' %}bg-warning
+                                        {% elif appointment.status == 'Approved' %}bg-success
+                                        {% elif appointment.status == 'Rejected' %}bg-danger
+                                        {% endif %}" id="status-{{ appointment.id }}">
+                                        {{ appointment.status }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-info" onclick="viewDetails({{ appointment.id }})">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    {% if appointment.status == 'Pending' %}
+                                    <button class="btn btn-sm btn-success" onclick="updateStatus({{ appointment.id }}, 'Approved')">
+                                        <i class="fas fa-check"></i> Approve
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" onclick="updateStatus({{ appointment.id }}, 'Rejected')">
+                                        <i class="fas fa-times"></i> Reject
+                                    </button>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-info text-center" role="alert">
+                    <i class="fas fa-info-circle"></i> No appointments found.
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal for Appointment Details -->
+<div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="appointmentModalLabel">
+                    <i class="fas fa-file-medical"></i> Appointment Details
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be loaded dynamically -->
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}
