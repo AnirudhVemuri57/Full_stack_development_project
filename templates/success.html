@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Appointment Confirmed - Patient Appointment System{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Success Message -->
+                <div class="text-center mb-4">
+                    <div class="success-icon mb-3">
+                        <i class="fas fa-check-circle fa-5x text-success"></i>
+                    </div>
+                    <h2 class="text-success mb-3">Appointment Booked Successfully!</h2>
+                    <p class="lead">Thank you for choosing HealthCare Clinic. Your appointment has been registered.</p>
+                </div>
+
+                <!-- Appointment Details Card -->
+                <div class="card shadow">
+                    <div class="card-header bg-success text-white text-center">
+                        <h4 class="mb-0"><i class="fas fa-calendar-check"></i> Appointment Details</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p class="mb-2"><strong><i class="fas fa-hashtag text-primary"></i> Appointment ID:</strong></p>
+                                <p class="ms-4">#{{ appointment.id }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="mb-2"><strong><i class="fas fa-info-circle text-primary"></i> Status:</strong></p>
+                                <p class="ms-4"><span class="badge bg-warning">{{ appointment.status }}</span></p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p class="mb-2"><strong><i class="fas fa-user text-primary"></i> Patient Name:</strong></p>
+                                <p class="ms-4">{{ appointment.name }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="mb-2"><strong><i class="fas fa-envelope text-primary"></i> Email:</strong></p>
+                                <p class="ms-4">{{ appointment.email }}</p>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p class="mb-2"><strong><i class="fas fa-phone text-primary"></i> Phone:</strong></p>
+                                <p class="ms-4">{{ appointment.phone }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="mb-2"><strong><i class="fas fa-hospital text-primary"></i> Department:</strong></p>
+                                <p class="ms-4">{{ appointment.department }}</p>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p class="mb-2"><strong><i class="fas fa-user-doctor text-primary"></i> Doctor:</strong></p>
+                                <p class="ms-4">{{ appointment.doctor }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="mb-2"><strong><i class="fas fa-calendar text-primary"></i> Date:</strong></p>
+                                <p class="ms-4">{{ appointment.date }}</p>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p class="mb-2"><strong><i class="fas fa-clock text-primary"></i> Time:</strong></p>
+                                <p class="ms-4">{{ appointment.time }}</p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="mb-3">
+                            <p class="mb-2"><strong><i class="fas fa-notes-medical text-primary"></i> Symptoms:</strong></p>
+                            <p class="ms-4">{{ appointment.symptoms }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Information Alert -->
+                <div class="alert alert-info mt-4" role="alert">
+                    <h5 class="alert-heading"><i class="fas fa-info-circle"></i> What's Next?</h5>
+                    <hr>
+                    <ul class="mb-0">
+                        <li>Your appointment request is currently <strong>{{ appointment.status }}</strong>.</li>
+                        <li>Our team will review your request and send you a confirmation email within 24 hours.</li>
+                        <li>Please check your email ({{ appointment.email }}) for updates.</li>
+                        <li>You can also contact us at +91 9876543210 for any queries.</li>
+                    </ul>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="text-center mt-4">
+                    <a href="/" class="btn btn-primary btn-lg px-5">
+                        <i class="fas fa-home"></i> Back to Home
+                    </a>
+                    <a href="/book" class="btn btn-outline-primary btn-lg px-5 ms-2">
+                        <i class="fas fa-plus"></i> Book Another
+                    </a>
+                    <button onclick="window.print()" class="btn btn-outline-secondary btn-lg px-5 ms-2">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
